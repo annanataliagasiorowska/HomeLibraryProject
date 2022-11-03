@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Books</title>
+</head>
+<body>
+<p>Tutaj znajdziesz wszystkie nasze książki</p>
+<ol>
+    {% for book in books %}
+    <li>{{ book['title'] }}</li>
+    {% endfor %}
+</ol>
+<div>
+    <p><a href="new_books">Wprowadź nową książkę</a></p>
+</div>
+</body>
+</html>

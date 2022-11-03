@@ -144,7 +144,7 @@ html,body {
     float: left;
 }
 
-.home {
+.books {
     width: 200px;
     height: 70px;
     background: #74b69c;
@@ -155,13 +155,13 @@ html,body {
     transform: translate(-50%,-50%);
 }
 
-.home:hover {
+.books:hover {
     background: rgba(0,0,0,0.2);
     border-bottom: 4px solid rgba(0,0,0,0.3);
     transition: 0.3s ease;
 }
 
-.home a {
+.books a {
     color: white;
     text-decoration: none;
     font-size: 13px;
@@ -171,7 +171,7 @@ html,body {
     font-family: 'Quicksand', sans-serif;
 }
 
-.home i {
+.books i {
     color: white;
     position: absolute;
     top: 50%;
@@ -180,7 +180,7 @@ html,body {
     transform: translate(-50%,-50%);
 }
 
-.portfolio {
+.authors {
     width: 200px;
     height: 70px;
     background: #74b69c;
@@ -192,13 +192,13 @@ html,body {
     transform: translate(-50%,-50%);
 }
 
-.portfolio:hover {
+.authors:hover {
     background: rgba(0,0,0,0.2);
     border-bottom: 4px solid rgba(0,0,0,0.3);
     transition: 0.3s ease;
 }
 
-.portfolio a {
+.authors a {
     color: white;
     text-decoration: none;
     font-family: 'Quicksand', sans-serif;
@@ -208,10 +208,10 @@ html,body {
     position: absolute;
 }
 
-.portfolio i {
+.authors i {
     color: white;
-    text-decoration: none;
-    font-family: 'Quicksand', sans-serif;
+    /*text-decoration: none;*/
+    /*font-family: 'Quicksand', sans-serif;*/
     top: 50%;
     left: 25%;
     font-size: 20px;
@@ -256,7 +256,7 @@ html,body {
     transform: translate(-50%,-50%);
 }
 
-.blog {
+.owners {
     width: 200px;
     height: 70px;
     background: #74b69c;
@@ -268,13 +268,13 @@ html,body {
     transform: translate(-50%,-50%);
 }
 
-.blog:hover {
+.owners:hover {
     background: rgba(0,0,0,0.2);
     border-bottom: 4px solid rgba(0,0,0,0.3);
     transition: 0.3s ease;
 }
 
-.blog a {
+.owners a {
     color: white;
     text-decoration: none;
     font-size: 13px;
@@ -284,7 +284,7 @@ html,body {
     font-family: 'Quicksand', sans-serif;
 }
 
-.blog i {
+.owners i {
     color: white;
     position: absolute;
     top: 50%;
@@ -293,7 +293,7 @@ html,body {
     transform: translate(-50%,-50%);
 }
 
-.faq {
+.borrowed {
     width: 200px;
     height: 70px;
     background: #74b69c;
@@ -305,13 +305,13 @@ html,body {
     transform: translate(-50%,-50%);
 }
 
-.faq:hover {
+.borrowed:hover {
     background: rgba(0,0,0,0.2);
     border-bottom: 4px solid rgba(0,0,0,0.3);
     transition: 0.3s ease;
 }
 
-.faq a {
+.borrowed a {
     color: white;
     text-decoration: none;
     font-size: 13px;
@@ -321,7 +321,7 @@ html,body {
     font-family: 'Quicksand', sans-serif;
 }
 
-.faq i {
+.borrowed i {
     color: white;
     position: absolute;
     top: 50%;
@@ -330,7 +330,7 @@ html,body {
     transform: translate(-50%,-50%);
 }
 
-.contact {
+.search {
     width: 200px;
     height: 70px;
     background: #74b69c;
@@ -342,13 +342,13 @@ html,body {
     transform: translate(-50%,-50%);
 }
 
-.contact:hover {
+.search:hover {
     background: rgba(0,0,0,0.2);
     border-bottom: 4px solid rgba(0,0,0,0.3);
     transition: 0.3s ease;
 }
 
-.contact a {
+.search a {
     color: white;
     text-decoration: none;
     font-size: 13px;
@@ -358,7 +358,7 @@ html,body {
     font-family: 'Quicksand', sans-serif;
 }
 
-.contact i {
+.search i {
     color: white;
     position: absolute;
     top: 50%;

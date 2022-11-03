@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form to add new books</title>
+</head>
+<body>
+<form class="form" action="/books" method="post">
+        <p>Wpisz tytuł:</p>
+            <input class="new_data" type="text" name="title">
+        <p>Podaj imię autora:</p>
+            <input class="new_data" type="text" name="author_first">
+        <p>Podaj nazwisko autora:</p>
+            <input class="new_data" type="text" name="author_last">
+        <p>Podaj rok wydania:</p>
+            <input class="new_data" type="text" name="release_year">
+        <p><label for="owner_name">Kto jest właścicielem?</label>
+            <select id="owner_name">
+                <option value="Ania" {% if owner_name=="Ania" %} SELECTED{% endif %}>Ania</option>
+                <option value="Kuba" {% if owner_name=="Kuba" %} SELECTED{% endif %}>Kuba</option>
+                <option value="Natalia" {% if owner_name=="Natalia" %} SELECTED{% endif %}>Natalia</option>
+                <option value="Ignacy" {% if owner_name=="Ignacy" %} SELECTED{% endif %}>Ignacy</option>
+                <option value="Witold" {% if owner_name=="Witold" %} SELECTED{% endif %}>Witold</option>
+            </select></p>
+        <button type="submit" class="btn"><strong>Prześlij</strong></button>
+    </form>
+</div>
+
+</body>
+</html>
