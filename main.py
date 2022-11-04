@@ -48,18 +48,24 @@ def search():
 def add_book():
     book_to_add = {}
     if request.method == "GET":
-        return render_template('new_books.html')
+        genres = queries.get_genres()
+        return render_template('new_books.html', genres=genres)
     else:
         book_to_add['title'] = request.form['title']
-        author_first_name = request.form['author_first']
-        author_last_name = request.form['author_last']
-        author_id = queries.find_author_id(author_first_name, author_last_name)
-        book_to_add['release_year'] = request.form['release_year']
-        book_to_add['author_id'] = author_id
         owner = request.form['owner_name']
         print(owner)
         user_id = queries.find_user_id(owner)
         book_to_add['user_id'] = user_id
+        genre = request.form['genre']
+        genre_id = queries.find_genre_id(genre)
+        book_to_add['genre_id'] = genre_id
+        book_to_add['position'] = request.form['position']
+        author_first_name = request.form['author_first']
+        author_last_name = request.form['author_last']
+        author_id = queries.find_author_id(author_first_name, author_last_name)
+        book_to_add['author_id'] = author_id
+        book_to_add['release_year'] = request.form['release_year']
+
         queries.post_book(book_to_add)
         return redirect('/books.html')
 

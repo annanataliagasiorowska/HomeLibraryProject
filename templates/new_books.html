@@ -23,6 +23,12 @@
                 <option value="Ignacy" {% if owner_name=="Ignacy" %} SELECTED{% endif %}>Ignacy</option>
                 <option value="Witold" {% if owner_name=="Witold" %} SELECTED{% endif %}>Witold</option>
             </select></p>
+        <p><label for="genre_name">Wybierz gatunek</label>
+            <select id="genre_name">
+                {% for genre in genres %}
+                <option value="genre" {% if genre_name==genre %} SELECTED{% endif %}>{{ genre['name'] }}</option>
+                {% endfor %}}
+            </select></p>
         <button type="submit" class="btn"><strong>Prześlij</strong></button>
     </form>
 </div>
