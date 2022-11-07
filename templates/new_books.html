@@ -6,7 +6,7 @@
     <title>Form to add new books</title>
 </head>
 <body>
-<form class="form" action="/books" method="post">
+<form class="form" action="/new_books" method="post">
         <p>Wpisz tytuł:</p>
             <input class="new_data" type="text" name="title">
         <p>Podaj imię autora:</p>
@@ -28,6 +28,15 @@
                 {% for genre in genres %}
                 <option value="genre" {% if genre_name==genre %} SELECTED{% endif %}>{{ genre['name'] }}</option>
                 {% endfor %}}
+            </select></p>
+    <p><label for="position_name">Gdzie można ją znaleźć?</label>
+            <select id="position_name">
+                <option value="sypialnia_1" {% if position_name=="sypialnia_1" %} SELECTED{% endif %}>sypialnia Ani i Kuby</option>
+                <option value="sypialnia_2" {% if position_name=="sypialnia_2" %} SELECTED{% endif %}>pokój Natalii</option>
+                <option value="sypialnia_3" {% if position_name=="sypialnia_3" %} SELECTED{% endif %}>pokój chłopaków</option>
+                <option value="salon" {% if position_name=="salon" %} SELECTED{% endif %}>salon</option>
+                <option value="Niemcewicza" {% if position_name=="Niemcewicza" %} SELECTED{% endif %}>warszawka</option>
+                <option value="inne" {% if position_name=="inne" %} SELECTED{% endif %}>gdzieś jest, lecz nie wiadomo gdzie</option>
             </select></p>
         <button type="submit" class="btn"><strong>Prześlij</strong></button>
     </form>

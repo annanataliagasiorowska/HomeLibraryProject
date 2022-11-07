@@ -3,7 +3,12 @@ from psycopg2 import sql
 
 
 def get_books_all():
-    return data_manager.execute_select('SELECT title FROM book;')
+    return data_manager.execute_select("""
+    SELECT b.title, b.release_year, b.rating, b.internal_rating, 
+    CONCAT(a.first_name, ' ' , a.last_name) as Author 
+    FROM book AS b
+    LEFT OUTER JOIN author a on a.id = b.author_id;
+    """)
 
 
 def post_book(book_details):
@@ -16,6 +21,16 @@ def post_book(book_details):
                                         'position': book_details['position'],
                                         'author_id': book_details['author_id'],
                                         'release_year': book_details['release_year']})
+
+
+def post_author(author_details):
+    data_manager.execute_dml_statement("""
+    INSERT INTO author (first_name, last_name, birth_year, origin) 
+    VALUES (%(first_name)s, %(last_name)s, %(birth_year)s, %(origin)s)""",
+                                       {'first_name': author_details['first_name'],
+                                        'last_name': author_details['last_name'],
+                                        'birth_year': author_details['birth_year'],
+                                        'origin': author_details['origin']})
 
 
 # TODO: to add case insensitive search

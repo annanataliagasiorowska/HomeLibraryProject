@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, jsonify, render_template, request, redirect
 
 import queries
 
@@ -63,11 +63,36 @@ def add_book():
         author_first_name = request.form['author_first']
         author_last_name = request.form['author_last']
         author_id = queries.find_author_id(author_first_name, author_last_name)
-        book_to_add['author_id'] = author_id
+        if author_id:
+            book_to_add['author_id'] = author_id
+        else:
+            render_template('new_authors.html')
         book_to_add['release_year'] = request.form['release_year']
-
         queries.post_book(book_to_add)
         return redirect('/books.html')
+
+
+@app.route("/new_authors", methods=["GET", "POST"])
+# @login_required
+def add_author():
+    author_to_add = {}
+    if request.method == "GET":
+        pass
+        # TODO page authors, query
+        # authors = queries.get_authors_all()
+        # return render_template('authors.html', authors=authors)
+    else:
+        author_to_add['first_name'] = request.form['first_name']
+        author_to_add['last_name'] = request.form['last_name']
+        author_to_add['birth_year'] = request.form['birth_year']
+        author_to_add['origin'] = request.form['origin']
+        queries.post_author(author_to_add)
+        return redirect('/books.html')
+
+
+@app.route('/api/books')
+def display_books():
+    return jsonify(queries.get_books_all())
 
 
 if __name__ == "__main__":
