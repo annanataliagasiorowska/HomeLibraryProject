@@ -35,7 +35,7 @@ def post_author(author_details):
     VALUES (%(first_name)s, %(last_name)s, %(birth_year)s, %(origin)s)""",
                                        {'first_name': author_details['first_name'],
                                         'last_name': author_details['last_name'],
-                                        'birth_year': author_details['birth_year'],
+                                        'birth_year': author_details['date_of_birth'],
                                         'origin': author_details['origin']})
 
 

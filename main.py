@@ -16,8 +16,6 @@ LIMIT = 10
 
 
 @app.route('/api/books')
-# @app.route('/books/most-rated')
-# @app.route('/books/<column_to_sort>')
 def api_books():
     page = int(request.args.get('page', 1))
     pages_all, offset = count_offset(page)
@@ -73,7 +71,6 @@ def add_book():
     else:
         book_to_add['title'] = request.form['title']
         owner = request.form['owner_name']
-        print(owner)
         user_id = queries.find_user_id(owner)
         book_to_add['user_id'] = user_id['id']
         genre = request.form['genre_name']
@@ -102,19 +99,16 @@ def add_author():
         # authors = queries.get_authors_all()
         # return render_template('authors.html', authors=authors)
     else:
-        author_to_add['first_name'] = request.form['first_name']
-        author_to_add['last_name'] = request.form['last_name']
-        author_to_add['birth_year'] = request.form['birth_year']
+        author_to_add['first_name'] = request.form['author_first']
+        author_to_add['last_name'] = request.form['author_last']
+        birth_year = request.form['birth_year']
+        birth_month = request.form['birth_month']
+        birth_day = request.form['birth_day']
+        author_to_add['date_of_birth'] = birth_year+'-'+birth_month+'-'+birth_day
         author_to_add['origin'] = request.form['origin']
+        print('dane autora:' + str(author_to_add))
         queries.post_author(author_to_add)
-        return redirect('/books.html')
-
-
-@app.route('/api/books')
-def display_books():
-    page = int(request.args.get('page', 1))
-    pages_all, offset = count_offset(page)
-    return jsonify(queries.get_books_all(offset, LIMIT))
+        return redirect('/books')
 
 
 if __name__ == "__main__":

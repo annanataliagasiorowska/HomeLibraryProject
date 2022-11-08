@@ -14,8 +14,11 @@ function getBooksData(url) {
 // previousButton.addEventListener("click", showData)
 
 
-let url = new URL(window.location.href)
-let page = url.searchParams.get('page')
+let url = new URL(window.location.href);
+let page = url.searchParams.get('page');
+if (page === null ) {
+    page = 1;
+}
 getBooksData(`/api/books?page=${page}`)
 
 
