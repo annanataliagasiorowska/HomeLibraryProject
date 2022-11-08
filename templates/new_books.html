@@ -26,7 +26,7 @@
         <p><label for="genre_name">Wybierz gatunek</label>
             <select name="genre_name" id="genre_name">
                 {% for genre in genres %}
-                <option value="genre" {% if genre_name==genre %} SELECTED{% endif %}>{{ genre['name'] }}</option>
+                <option value="{{ genre['name'] }}" SELECTED>{{ genre['name'] }}</option>
                 {% endfor %}}
             </select></p>
         <p><label for="position_name">Gdzie można ją znaleźć?</label>

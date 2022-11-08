@@ -74,8 +74,10 @@ def add_book():
         user_id = queries.find_user_id(owner)
         book_to_add['user_id'] = user_id['id']
         genre = request.form['genre_name']
+        print('Genre: ' + str(genre))
         genre_id = queries.find_genre_id(genre)
-        book_to_add['genre_id'] = genre_id
+        print('Genre id: ' + str(genre_id))
+        book_to_add['genre_id'] = genre_id['id']
         book_to_add['position'] = request.form['position_name']
         author_first_name = request.form['author_first']
         author_last_name = request.form['author_last']
