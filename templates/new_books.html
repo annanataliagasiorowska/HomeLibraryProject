@@ -15,8 +15,8 @@
             <input class="new_data" type="text" name="author_last">
         <p>Podaj rok wydania:</p>
             <input class="new_data" type="text" name="release_year">
-        <p><label for="owner_name">Kto jest właścicielem?</label>
-            <select id="owner_name">
+        <p><label for="owner_name" name="owner_name">Kto jest właścicielem?</label>
+            <select name="owner_name" id="owner_name">
                 <option value="Ania" {% if owner_name=="Ania" %} SELECTED{% endif %}>Ania</option>
                 <option value="Kuba" {% if owner_name=="Kuba" %} SELECTED{% endif %}>Kuba</option>
                 <option value="Natalia" {% if owner_name=="Natalia" %} SELECTED{% endif %}>Natalia</option>
@@ -24,19 +24,19 @@
                 <option value="Witold" {% if owner_name=="Witold" %} SELECTED{% endif %}>Witold</option>
             </select></p>
         <p><label for="genre_name">Wybierz gatunek</label>
-            <select id="genre_name">
+            <select name="genre_name" id="genre_name">
                 {% for genre in genres %}
                 <option value="genre" {% if genre_name==genre %} SELECTED{% endif %}>{{ genre['name'] }}</option>
                 {% endfor %}}
             </select></p>
-    <p><label for="position_name">Gdzie można ją znaleźć?</label>
-            <select id="position_name">
-                <option value="sypialnia_1" {% if position_name=="sypialnia_1" %} SELECTED{% endif %}>sypialnia Ani i Kuby</option>
-                <option value="sypialnia_2" {% if position_name=="sypialnia_2" %} SELECTED{% endif %}>pokój Natalii</option>
-                <option value="sypialnia_3" {% if position_name=="sypialnia_3" %} SELECTED{% endif %}>pokój chłopaków</option>
+        <p><label for="position_name">Gdzie można ją znaleźć?</label>
+            <select name="position_name" id="position_name">
+                <option value="sypialnia_1" {% if position_name=="sypialnia_1" %} SELECTED{% endif %}>sypialnia_1</option>
+                <option value="sypialnia_2" {% if position_name=="sypialnia_2" %} SELECTED{% endif %}>sypialnia_2</option>
+                <option value="sypialnia_3" {% if position_name=="sypialnia_3" %} SELECTED{% endif %}>sypialnia_3</option>
                 <option value="salon" {% if position_name=="salon" %} SELECTED{% endif %}>salon</option>
-                <option value="Niemcewicza" {% if position_name=="Niemcewicza" %} SELECTED{% endif %}>warszawka</option>
-                <option value="inne" {% if position_name=="inne" %} SELECTED{% endif %}>gdzieś jest, lecz nie wiadomo gdzie</option>
+                <option value="Niemcewicza" {% if position_name=="Niemcewicza" %} SELECTED{% endif %}>Niemcewicza</option>
+                <option value="inne" {% if position_name=="inne" %} SELECTED{% endif %}>inne</option>
             </select></p>
         <button type="submit" class="btn"><strong>Prześlij</strong></button>
     </form>

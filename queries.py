@@ -2,18 +2,24 @@ import data_manager
 from psycopg2 import sql
 
 
-def get_books_all():
+def get_books_all(offset, limit):
     return data_manager.execute_select("""
     SELECT b.title, b.release_year, b.rating, b.internal_rating, 
     CONCAT(a.first_name, ' ' , a.last_name) as Author 
     FROM book AS b
-    LEFT OUTER JOIN author a on a.id = b.author_id;
-    """)
+    LEFT OUTER JOIN author a on a.id = b.author_id
+    LIMIT %(limit)s OFFSET %(offset)s;
+    """, {'limit': limit, 'offset': offset, })
+
+
+def count_books():
+    return data_manager.execute_select('SELECT COUNT(id) FROM book')
 
 
 def post_book(book_details):
+    print("Book details: " + str(book_details))
     data_manager.execute_dml_statement("""
-    INSERT INTO book (title, user_id, genre_id, position, author_id, release_year) 
+    INSERT INTO book (title, user_id, genre_id, "position", author_id, release_year) 
     VALUES (%(title)s, %(user_id)s, %(genre_id)s, %(position)s, %(author_id)s, %(release_year)s)""",
                                        {'title': book_details['title'],
                                         'user_id': book_details['user_id'],
@@ -45,13 +51,13 @@ def find_author_id(author_first_name, author_last_name):
 
 def find_user_id(owner):
     return data_manager.execute_select("""
-    SELECT id FROM user
+    SELECT id FROM public.user
     WHERE name = %(owner)s""", {'owner': owner}, False)
 
 
 def find_genre_id(genre):
     return data_manager.execute_select("""
-    SELECT id FROM genre
+    SELECT id FROM public.genre
     WHERE name = %(genre)s""", {'genre': genre}, False)
 
 

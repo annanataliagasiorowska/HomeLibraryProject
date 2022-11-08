@@ -12,10 +12,30 @@ def index():
     return render_template('index.html')
 
 
+LIMIT = 10
+
+
+@app.route('/api/books')
+# @app.route('/books/most-rated')
+# @app.route('/books/<column_to_sort>')
+def api_books():
+    page = int(request.args.get('page', 1))
+    pages_all, offset = count_offset(page)
+    return jsonify(queries.get_books_all(offset, LIMIT))
+
+
+def count_offset(page):
+    number_of_books = queries.count_books()[0]['count']
+    pages_all = number_of_books // LIMIT + 1
+    offset = (page - 1) * LIMIT
+    return pages_all, offset
+
+
 @app.route("/books")
 def books():
-    books = queries.get_books_all()
-    return render_template('books.html', books=books)
+    page = int(request.args.get('page', 1))
+    pages_all, offset = count_offset(page)
+    return render_template('books.html', page=page, pages_all=pages_all)
 
 
 @app.route("/authors")
@@ -55,21 +75,21 @@ def add_book():
         owner = request.form['owner_name']
         print(owner)
         user_id = queries.find_user_id(owner)
-        book_to_add['user_id'] = user_id
-        genre = request.form['genre']
+        book_to_add['user_id'] = user_id['id']
+        genre = request.form['genre_name']
         genre_id = queries.find_genre_id(genre)
         book_to_add['genre_id'] = genre_id
-        book_to_add['position'] = request.form['position']
+        book_to_add['position'] = request.form['position_name']
         author_first_name = request.form['author_first']
         author_last_name = request.form['author_last']
         author_id = queries.find_author_id(author_first_name, author_last_name)
         if author_id:
-            book_to_add['author_id'] = author_id
+            book_to_add['author_id'] = author_id['id']
         else:
-            render_template('new_authors.html')
+            return render_template('new_authors.html')
         book_to_add['release_year'] = request.form['release_year']
         queries.post_book(book_to_add)
-        return redirect('/books.html')
+        return redirect('/books')
 
 
 @app.route("/new_authors", methods=["GET", "POST"])
@@ -92,7 +112,9 @@ def add_author():
 
 @app.route('/api/books')
 def display_books():
-    return jsonify(queries.get_books_all())
+    page = int(request.args.get('page', 1))
+    pages_all, offset = count_offset(page)
+    return jsonify(queries.get_books_all(offset, LIMIT))
 
 
 if __name__ == "__main__":

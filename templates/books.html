@@ -8,6 +8,7 @@
           crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/static/style/style.css">
     <link rel="stylesheet" type="text/css" href="/static/style/style_books.css">
+    <link rel="stylesheet" href="/static/style/pagination.css">
     <script src="../static/js/books.js" defer></script>
     <title>Books</title>
 </head>
@@ -31,19 +32,49 @@
                         </thead>
                         <tbody id="books-data"></tbody>
                     </table>
-                </div>
 
-            <ul class="list_books">
-                {% for book in books %}
-                <li>{{ book['title'] }}</li>
-                {% endfor %}
-            </ul>
+    <div class="center">
+        <div class="pagination">
+            {% if page > 1 %}
+                <a class="a" href="/books?page={{ page - 1 }}">&laquo;</a>
+            {% else %}
+                <a>&laquo;</a>
+            {% endif %}
+            {% if page - 4 >= 1 %}
+                <a class="a" href="/books?page={{ page - 4 }}">{{ page - 4 }}</a>
+            {% endif %}
+            {% if page - 3 >= 1 %}
+                <a class="a" href="/books?page={{ page - 3 }}">{{ page - 3 }}</a>
+            {% endif %}
+            {% if page - 2 >= 1 %}
+                <a class="a" href="/books?page={{ page - 2 }}">{{ page - 2 }}</a>
+            {% endif %}
+            {% if page - 1 >= 1 %}
+                <a class="a" href="/books?page={{ page - 1 }}">{{ page - 1 }}</a>
+            {% endif %}
+            <a class="active" href="/books?page={{ page }}">{{ page }}</a>
+            {% if page + 1 <= pages_all %}
+                <a class="a" href="/books?page={{ page + 1 }}">{{ page  + 1 }}</a>
+            {% endif %}
+            {% if page + 2 <= pages_all %}
+                <a class="a" href="/books?page={{ page + 2 }}">{{ page + 2 }}</a>
+            {% endif %}
+            {% if page + 3 <= pages_all %}
+                <a class="a" href="/books?page={{ page + 3 }}">{{ page + 3 }}</a>
+            {% endif %}
+            {% if page + 1 <= pages_all %}
+                <a class="a" href="/books?page={{ page + 1 }}">&raquo;</a>
+            {% else %}
+                <a>&raquo;</a>
+            {% endif %}
+        </div>
+        </div>
+ </div>
             <div>
-                <p><a class="link_btn" href="new_books">Wprowadź nową książkę</a></p>
+                <p><a class="link_btn" href="/new_books">Wprowadź nową książkę</a></p>
             </div>
         </div>
     </div>
-</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
