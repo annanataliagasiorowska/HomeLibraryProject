@@ -82,11 +82,15 @@ def add_book():
         author_first_name = request.form['author_first']
         author_last_name = request.form['author_last']
         author_id = queries.find_author_id(author_first_name, author_last_name)
+        book_to_add['release_year'] = request.form['release_year']
         if author_id:
             book_to_add['author_id'] = author_id['id']
         else:
-            return render_template('new_authors.html')
-        book_to_add['release_year'] = request.form['release_year']
+            return render_template('new_authors.html', title=book_to_add['title'],
+                                   user_id=book_to_add['user_id'],
+                                   genre_id=book_to_add['genre_id'],
+                                   position=book_to_add['position'],
+                                   release_year=book_to_add['release_year'])
         queries.post_book(book_to_add)
         return redirect('/books')
 
@@ -108,8 +112,16 @@ def add_author():
         birth_day = request.form['birth_day']
         author_to_add['date_of_birth'] = birth_year+'-'+birth_month+'-'+birth_day
         author_to_add['origin'] = request.form['origin']
-        print('dane autora:' + str(author_to_add))
-        queries.post_author(author_to_add)
+        author_id = queries.post_author(author_to_add)[0]
+        print('author_id: ' + str(author_id))
+        book_to_add = {}
+        book_to_add['author_id'] = author_id
+        book_to_add['title'] = request.form['title']
+        book_to_add['user_id'] = request.form['user_id']
+        book_to_add['genre_id'] = request.form['genre_id']
+        book_to_add['position'] = request.form['position']
+        book_to_add['release_year'] = request.form['release_year']
+        queries.post_book(book_to_add)
         return redirect('/books')
 
 

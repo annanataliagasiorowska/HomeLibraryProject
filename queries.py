@@ -30,9 +30,10 @@ def post_book(book_details):
 
 
 def post_author(author_details):
-    data_manager.execute_dml_statement("""
+    return data_manager.execute_dml_statement("""
     INSERT INTO author (first_name, last_name, birth_year, origin) 
-    VALUES (%(first_name)s, %(last_name)s, %(birth_year)s, %(origin)s)""",
+    VALUES (%(first_name)s, %(last_name)s, %(birth_year)s, %(origin)s)
+    RETURNING id""",
                                        {'first_name': author_details['first_name'],
                                         'last_name': author_details['last_name'],
                                         'birth_year': author_details['date_of_birth'],
@@ -63,5 +64,9 @@ def find_genre_id(genre):
 
 def get_genres():
     return data_manager.execute_select('SELECT name FROM genre;')
+
+
+def get_last_author_id():
+    return data_manager.execute_select('SELECT MAX(id) FROM public.author;', False)
 
 
