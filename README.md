@@ -1,4 +1,4 @@
-#HomeLibrary Project
+# HomeLibrary Project
 
 ## General description
 Solution to keep our big family library under control. 
@@ -36,19 +36,14 @@ To do:
 
 
 ## Acknowledgements
-Give credit here.
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
+Give credit here. 
+- This project front-end was based on [this tutorial](https://www.youtube.com/watch?v=CGy1evcc578).
+- Many thanks to my mentor [@kuba-gasiorowski](https://github.com/kuba-gasiorowski).
 
 
 ## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
+Created by [@anna-gasiorowska](https://github.com/annanataliagasiorowska) - feel free to contact me!
 
 
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
 
-<!-- You don't have to include all sections - just the one's relevant to your project -->
 
