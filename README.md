@@ -22,22 +22,17 @@ my own idea, and it's not prepared within the course.
 Project is: _in progress_ 
 
 ## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
-
 Room for improvement:
 - Optimize add_books and add_authors functions
 - Prepare base.html file 
 - Limit access to database only to api functions
-
 
 To do:
 - Search library for books and authors
 - Create modals with book and author details
 - Add login
 
-
 ## Acknowledgements
-Give credit here. 
 - This project front-end was based on [this tutorial](https://www.youtube.com/watch?v=CGy1evcc578).
 - Many thanks to my mentor [@kuba-gasiorowski](https://github.com/kuba-gasiorowski).
 
