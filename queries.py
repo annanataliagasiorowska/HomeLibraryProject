@@ -19,13 +19,8 @@ def count_books():
 def count_authors():
     return data_manager.execute_select('SELECT COUNT(id) FROM author')
 
-# def count_records(database_table):
-#     return data_manager.execute_select("""SELECT COUNT(id)
-#     FROM %(database_table)s""", {'database_table': database_table})
-
 
 def post_book(book_details):
-    print("Book details: " + str(book_details))
     data_manager.execute_dml_statement("""
     INSERT INTO book (title, user_id, genre_id, "position", author_id, release_year) 
     VALUES (%(title)s, %(user_id)s, %(genre_id)s, %(position)s, %(author_id)s, %(release_year)s)""",

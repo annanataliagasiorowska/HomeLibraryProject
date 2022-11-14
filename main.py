@@ -29,13 +29,6 @@ def count_offset_books(page):
     return pages_all, offset
 
 
-# def count_offset(page_number, database_table):
-#     number_of_records = queries.count_records(database_table)[0]['count']
-#     pages_all = number_of_records // LIMIT + 1
-#     offset = (page_number - 1) * LIMIT
-#     return pages_all, offset
-
-
 @app.route("/books")
 def books():
     page = int(request.args.get('page', 1))
@@ -97,9 +90,7 @@ def add_book():
         user_id = queries.find_user_id(owner)
         book_to_add['user_id'] = user_id['id']
         genre = request.form['genre_name']
-        print('Genre: ' + str(genre))
         genre_id = queries.find_genre_id(genre)
-        print('Genre id: ' + str(genre_id))
         book_to_add['genre_id'] = genre_id['id']
         book_to_add['position'] = request.form['position_name']
         author_first_name = request.form['author_first']
@@ -124,25 +115,24 @@ def add_author():
     author_to_add = {}
     if request.method == "GET":
         return render_template('/new_authors.html')
-    elif request.method == "POST" and :
+    else:
         author_to_add['first_name'] = request.form['author_first']
         author_to_add['last_name'] = request.form['author_last']
         birth_year = request.form['birth_year']
         birth_month = request.form['birth_month']
         birth_day = request.form['birth_day']
-        author_to_add['date_of_birth'] = birth_year+'-'+birth_month+'-'+birth_day
+        author_to_add['date_of_birth'] = birth_year + '-' + birth_month + '-' + birth_day
         author_to_add['origin'] = request.form['origin']
-        author_id = queries.post_author(author_to_add)[0]
-        print('author_id: ' + str(author_id))
-        book_to_add = {}
-        book_to_add['author_id'] = author_id
-        book_to_add['title'] = request.form['title']
-        book_to_add['user_id'] = request.form['user_id']
-        book_to_add['genre_id'] = request.form['genre_id']
-        book_to_add['position'] = request.form['position']
-        book_to_add['release_year'] = request.form['release_year']
-        queries.post_book(book_to_add)
-        return redirect('/books')
+        if request.form['title'] is not "":
+            author_id = queries.post_author(author_to_add)[0]
+            book_to_add = {'author_id': author_id, 'title': request.form['title'], 'user_id': request.form['user_id'],
+                           'genre_id': request.form['genre_id'], 'position': request.form['position'],
+                           'release_year': request.form['release_year']}
+            queries.post_book(book_to_add)
+            return redirect('/books')
+        else:
+            queries.post_author(author_to_add)
+            return redirect('/authors')
 
 
 if __name__ == "__main__":
