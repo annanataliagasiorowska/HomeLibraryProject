@@ -18,27 +18,50 @@ LIMIT = 10
 @app.route('/api/books')
 def api_books():
     page = int(request.args.get('page', 1))
-    pages_all, offset = count_offset(page)
+    pages_all, offset = count_offset_books(page)
     return jsonify(queries.get_books_all(offset, LIMIT))
 
 
-def count_offset(page):
+def count_offset_books(page):
     number_of_books = queries.count_books()[0]['count']
     pages_all = number_of_books // LIMIT + 1
     offset = (page - 1) * LIMIT
     return pages_all, offset
 
 
+# def count_offset(page_number, database_table):
+#     number_of_records = queries.count_records(database_table)[0]['count']
+#     pages_all = number_of_records // LIMIT + 1
+#     offset = (page_number - 1) * LIMIT
+#     return pages_all, offset
+
+
 @app.route("/books")
 def books():
     page = int(request.args.get('page', 1))
-    pages_all, offset = count_offset(page)
+    pages_all, offset = count_offset_books(page)
     return render_template('books.html', page=page, pages_all=pages_all)
+
+
+def count_offset_authors(page):
+    number_of_authors = queries.count_authors()[0]['count']
+    pages_all = number_of_authors // LIMIT + 1
+    offset = (page - 1) * LIMIT
+    return pages_all, offset
+
+
+@app.route('/api/authors')
+def api_authors():
+    page = int(request.args.get('page', 1))
+    pages_all, offset = count_offset_authors(page)
+    return jsonify(queries.get_authors_all(offset, LIMIT))
 
 
 @app.route("/authors")
 def authors():
-    return render_template('authors.html')
+    page = int(request.args.get('page', 1))
+    pages_all, offset = count_offset_authors(page)
+    return render_template('authors.html', page=page, pages_all=pages_all)
 
 
 @app.route("/about")
@@ -100,11 +123,8 @@ def add_book():
 def add_author():
     author_to_add = {}
     if request.method == "GET":
-        pass
-        # TODO page authors, query
-        # authors = queries.get_authors_all()
-        # return render_template('authors.html', authors=authors)
-    else:
+        return render_template('/new_authors.html')
+    elif request.method == "POST" and :
         author_to_add['first_name'] = request.form['author_first']
         author_to_add['last_name'] = request.form['author_last']
         birth_year = request.form['birth_year']

@@ -27,6 +27,7 @@ Include areas you believe need improvement / could be improved. Also add TODOs f
 Room for improvement:
 - Optimize add_books and add_authors functions
 - Prepare base.html file 
+- Limit access to database only to api functions
 
 
 To do:

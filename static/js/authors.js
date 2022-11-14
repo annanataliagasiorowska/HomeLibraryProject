@@ -1,8 +1,8 @@
-function getBooksData(url) {
+function getAuthorsData(url) {
     fetch(url)
         .then((response) => response.json())
         .then((data) => {
-            fillBooksTable(data);
+            fillAuthorsTable(data);
         })
 }
 
@@ -12,16 +12,15 @@ let page = url.searchParams.get('page');
 if (page === null ) {
     page = 1;
 }
-getBooksData(`/api/books?page=${page}`)
+getAuthorsData(`/api/authors?page=${page}`)
 
 
-function fillBooksTable(data) {
-    let tableBody = document.getElementById("books-data");
+function fillAuthorsTable(data) {
+    let tableBody = document.getElementById("authors-data");
     tableBody.innerHTML = "";
     for (let i = 0; i < data.length; i++) {
         const row = tableBody.insertRow();
-        const columns = ['title', 'author', 'release_year',
-            'rating', 'internal_rating', ]
+        const columns = ['author', 'birthday', 'origin']
         for (const column of columns) {
             let dataText = data[i][column];
             let cell = row.insertCell();

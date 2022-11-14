@@ -16,6 +16,14 @@ def count_books():
     return data_manager.execute_select('SELECT COUNT(id) FROM book')
 
 
+def count_authors():
+    return data_manager.execute_select('SELECT COUNT(id) FROM author')
+
+# def count_records(database_table):
+#     return data_manager.execute_select("""SELECT COUNT(id)
+#     FROM %(database_table)s""", {'database_table': database_table})
+
+
 def post_book(book_details):
     print("Book details: " + str(book_details))
     data_manager.execute_dml_statement("""
@@ -68,5 +76,16 @@ def get_genres():
 
 def get_last_author_id():
     return data_manager.execute_select('SELECT MAX(id) FROM public.author;', False)
+
+
+def get_authors_all(offset, limit):
+    return data_manager.execute_select("""
+       SELECT CONCAT(first_name, ' ' , last_name) as Author, 
+       TO_CHAR( birth_year:: DATE, 'dd.mm.yyyy') AS birthday, origin
+       FROM author 
+       ORDER BY last_name ASC
+       LIMIT %(limit)s OFFSET %(offset)s;
+       """, {'limit': limit, 'offset': offset, })
+
 
 
