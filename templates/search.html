@@ -3,13 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+          crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/style/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/style/style_books.css">
+    <link rel="stylesheet" href="/static/style/pagination.css">
+    <script src="../static/js/search.js" defer></script>
     <title>Search</title>
 </head>
 <body>
-    <p>You can check if in our collection there is a book you are looking for.</p>
-        <div><textarea rows="1" cols="30"></textarea></div>
-        <div>
-            <button>Search</button>
-        </div>
+<p>Sprawdź, czy mamy w swojej kolekcji książkę lub autora, których szukasz.</p>
+    <div class="card" id="inputs">
+        <p>Jakiego tytyłu szukasz?</p>
+        <input type="text" name="book-title"  id="input-title">
+        <p>Jakiego autora szukasz?</p>
+        <input type="text" name="author-name" id="input-author">
+    </div>
+<div class="results">
+    <ul id="results-list">
+    </ul>
+</div>
 </body>
 </html>

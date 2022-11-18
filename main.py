@@ -72,9 +72,19 @@ def borrowed():
     return render_template('borrowed.html')
 
 
-@app.route("/search")
+@app.route("/search", methods=["GET", "POST"])
 def search():
     return render_template('search.html')
+
+
+@app.route('/api/search')
+def search_title_or_author():
+    title = request.args.get('title')
+    author = request.args.get('author')
+    if author is not None:
+        return queries.search_author_by_name('%' + str(author) + '%')
+    elif title is not None:
+        return queries.search_book_by_title('%' + str(title) + '%')
 
 
 @app.route("/new_books", methods=["GET", "POST"])
@@ -123,7 +133,7 @@ def add_author():
         birth_day = request.form['birth_day']
         author_to_add['date_of_birth'] = birth_year + '-' + birth_month + '-' + birth_day
         author_to_add['origin'] = request.form['origin']
-        if request.form['title'] is not "":
+        if request.form['title'] != "":
             author_id = queries.post_author(author_to_add)[0]
             book_to_add = {'author_id': author_id, 'title': request.form['title'], 'user_id': request.form['user_id'],
                            'genre_id': request.form['genre_id'], 'position': request.form['position'],

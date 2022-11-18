@@ -83,4 +83,20 @@ def get_authors_all(offset, limit):
        """, {'limit': limit, 'offset': offset, })
 
 
+def search_author_by_name(author):
+    print(author)
+    return data_manager.execute_select("""
+    SELECT CONCAT(first_name, ' ' , last_name) as Author
+    FROM author
+    WHERE last_name ILIKE %(author)s
+    """, {'author': author})
+
+
+def search_book_by_title(title):
+    print(title)
+    return data_manager.execute_select("""
+    SELECT title 
+    FROM book
+    WHERE title ILIKE %(title)s
+    """, {'title': title})
 
